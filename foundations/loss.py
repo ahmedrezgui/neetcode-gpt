@@ -10,8 +10,8 @@ class Solution:
         # Hint: clip y_pred to [1e-7, 1 - 1e-7] to avoid log(0)
         # return round(your_answer, 4)
         y_pred = np.clip(y_pred, 1e-7, 1 - 1e-7)
-        res= np.sum(np.multiply(y_true, np.log(y_pred)) + np.multiply(1-y_true, np.log(1-y_pred)))
-        return round(-res/len(y_true),4)
+        loss= -np.mean(np.multiply(y_true, np.log(y_pred)) + np.multiply(1-y_true, np.log(1-y_pred)))
+        return round(loss,4)
 
     def categorical_cross_entropy(self, y_true: NDArray[np.float64], y_pred: NDArray[np.float64]) -> float:
         # y_true: one-hot encoded true labels (shape: n_samples x n_classes)
@@ -19,7 +19,7 @@ class Solution:
         # Hint: clip y_pred to [1e-7, 1 - 1e-7] to avoid log(0)
         # return round(your_answer, 4)
         y_pred = np.clip(y_pred, 1e-7, 1 - 1e-7)
-        res = np.sum(np.multiply(y_true, np.log(y_pred)))
-        return round(-res/y_true.shape[0], 4)
+        loss = -np.mean(np.sum(np.multiply(y_true, np.log(y_pred)), axis=1))
+        return round(loss, 4)
 
 
