@@ -17,6 +17,6 @@ class Solution:
         if activation == "relu":    
             res = float(max(0,z))
         else:
-            res = 1 / (1+ math.exp(-z))            
+            res = 1 / (1+ np.exp(-z))            
         return round(res, 5)
 
