@@ -32,12 +32,12 @@ class Solution:
         n = len(y_true) if y_true.ndim > 0 else 1
         dy_hat = 2*(y_hat - y_true)/n 
         db2 = dy_hat
-        dW2 = dy_hat.reshape(-1,1) * a1.reshape(1,-1)
+        dW2 = dy_hat.reshape(-1,1) @ a1.reshape(1,-1)
         
-        da1 = dy_hat.reshape(1,-1) * W2
+        da1 = dy_hat.reshape(1,-1) @ W2
         da1 = da1.flatten() 
         dz1 = da1 * (z1>0).astype(float)
-        dW1 = dz1.reshape(-1,1) * x.reshape(1,-1)
+        dW1 = dz1.reshape(-1,1) @ x.reshape(1,-1)
         db1 = dz1
 
         return {
